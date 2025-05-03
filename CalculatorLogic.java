@@ -15,13 +15,25 @@ class CalculatorLogic {
                 currentDisplay += command;
             }
         }
-        else {
+        else if (command.equals("+/-")) {// 轉換正負號
+            if (!currentDisplay.equals("error")) {
+                try {
+                    double value = Double.parseDouble(currentDisplay);
+                    value = -value;  // 直接數值翻轉
+                    currentDisplay = String.valueOf(value);  // 更新顯示內容
+                } catch (NumberFormatException e) {
+                    currentDisplay = "error";
+                }
+            }
+        }else {
             if (start) {
-                if (command.equals("-")) {
-                    currentDisplay = command;
-                    start = false;
-                } else {
+                try {
+                    double x = Double.parseDouble(currentDisplay);
+                    calculate(x);
                     lastCommand = command;
+                    currentDisplay = String.valueOf(result);
+                } catch (NumberFormatException e) {
+                    currentDisplay = "error";
                 }
             } else {
                 try {
