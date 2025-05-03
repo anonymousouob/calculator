@@ -26,26 +26,16 @@ class CalculatorLogic {
                 }
             }
         }else {
-            if (start) {
-                try {
-                    double x = Double.parseDouble(currentDisplay);
-                    calculate(x);
-                    lastCommand = command;
-                    currentDisplay = String.valueOf(result);
-                } catch (NumberFormatException e) {
-                    currentDisplay = "error";
-                }
-            } else {
-                try {
-                    double x = Double.parseDouble(currentDisplay);
-                    calculate(x);
-                    lastCommand = command;
-                    start = true;
-                    currentDisplay = String.valueOf(result);
-                } catch (NumberFormatException e) {
-                    currentDisplay = "error";
-                }
+            try {
+                double x = Double.parseDouble(currentDisplay);
+                calculate(x);
+                lastCommand = command;
+                start = true;
+                currentDisplay = String.valueOf(result);
+            } catch (NumberFormatException e) {
+                currentDisplay = "error";
             }
+            
         }
         return currentDisplay;
     }
